@@ -1,7 +1,8 @@
 {
   "autoload": {
     "psr-4": {
-      "base\\" : "vendor/framework/core/clasess"
+      "myfrm\\": "vendor/myfrm/core/classes"
     }
-  }
+  },
+  "require": {}
 }

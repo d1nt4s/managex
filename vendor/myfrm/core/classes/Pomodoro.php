@@ -17,13 +17,5 @@ class Pomodoro
   {
   }
 
-  // public function start()
-  // {
-  //   $w = new EvPeriodic(0., 10.5, NULL, function ($w, $revents) {
-  //     echo time(), PHP_EOL;
-  //   });
-    
-  //   Ev::run();
-  // }
 
 }

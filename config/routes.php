@@ -3,4 +3,4 @@
 /** @var $router */
 
 $router->get('', 'index.php');
-$router->get('pomodoro', 'pomodoro.php');
+$router->post('pomodoro', 'pomodoro.php');

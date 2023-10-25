@@ -1,40 +1,24 @@
 import { Pomodoro } from "./PomodoroClass.js";
 
 
-// stages => [ session ; short_break ; long_break ; long_break_interval ]
-let stages = getStages();
-let pomodoro = new Pomodoro(stages.get('session'));
+let pomodoro = new Pomodoro(getStages());
 
 document.getElementById('start').addEventListener('click', () => {
-
-  if (pomodoro.switcher == false) {
-    // pomodoro.minutes = features[0].value;
-  } else {
-    // pomodoro.minutes = features[1].value;
-  }
-
   pomodoro.interval = setInterval(updateTime, 1000); 
-  document.getElementById('start').style.display = "none";
-  document.getElementById('stop').style.display = "block";
+  pomodoro.startStage();
 });
 
-document.getElementById('stop').addEventListener('click', () => {
-  clearInterval(pomodoro.interval);
-  document.getElementById('start').style.display = "block";
-  document.getElementById('stop').style.display = "none";
+document.getElementById('pause').addEventListener('click', () => {
+  pomodoro.pauseStage();
 });
 
 document.getElementById('set').addEventListener('click', () => {
-
-  stages.clear();
-  stages = getStages();
-  pomodoro = new Pomodoro(stages.get('session'));
-
+  pomodoro = new Pomodoro(getStages());
 });
 
 function updateTime()
 {
-  pomodoro.updateTime();
+  pomodoro.Stage();
 }
 
 function getStages()
@@ -42,39 +26,33 @@ function getStages()
   const stages = new Map();
   let features = document.getElementsByClassName("pomodoro-feature"); 
 
-  reloadDataOnPHP(features);
+  reloadStagesPHP({
+    'session':features[0].value, 
+    'short_break':features[1].value, 
+    'long_break':features[2].value, 
+    'long_break_interval':features[3].value}
+  );
 
   stages.set('session', features[0].value);
   stages.set('short_break', features[1].value);
   stages.set('long_break', features[2].value);
-  stages.set('long_break_interval', features[2].value);
+  stages.set('long_break_interval', features[3].value);
   return stages;
 }
 
-function reloadDataOnPHP(features)
+function reloadStagesPHP(stages)
 {
-  let feature, xhttp, nocache;
-  let i = 0;
+  stages = JSON.stringify(stages);
 
-  while (i < features.length) {
-    feature = features[i].value;
-    
-    xhttp = new XMLHttpRequest();
+  $.ajax({
+    type:'POST',
+    url:'pomodoro',
+    data:{
+      stages
+    },
+    success:function(data){
+      console.log(data)
+    }
+  });
 
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4) {
-        if (this.status == 200) {
-          if (this.responseText != null) {
-          }
-          else alert("Ошибка AJAX: Данные не получены");
-        }
-        else alert("Ошибка AJAX: " + this.statusText);
-      }
-    } 
-  
-    nocache = "&nocache=" + Math.random() * 1000000;
-    xhttp.open("GET", "pomodoro?feature=" + feature + nocache, true);
-    xhttp.send();
-    i++;
-  }
 }

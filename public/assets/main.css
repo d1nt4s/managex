@@ -15,3 +15,8 @@ html, body {
 main.main {
   flex: 1 1 auto;
 }
+
+.timetable {
+  position: absolute;
+  bottom: 56px;
+}

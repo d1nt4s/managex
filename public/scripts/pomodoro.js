@@ -3,16 +3,16 @@ import { Pomodoro } from "./PomodoroClass.js";
 
 let pomodoro = new Pomodoro(getStages());
 
-document.getElementById('start').addEventListener('click', () => {
+document.getElementById('start_pomodoro').addEventListener('click', () => {
   pomodoro.interval = setInterval(updateTime, 1000); 
   pomodoro.startStage();
 });
 
-document.getElementById('pause').addEventListener('click', () => {
+document.getElementById('pause_pomodoro').addEventListener('click', () => {
   pomodoro.pauseStage();
 });
 
-document.getElementById('set').addEventListener('click', () => {
+document.getElementById('set_pomodoro').addEventListener('click', () => {
   pomodoro = new Pomodoro(getStages());
 });
 

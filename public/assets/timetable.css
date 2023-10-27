@@ -1,0 +1,38 @@
+.action textarea, .duration input {
+  color: #ffffff;
+  background-color: #292c32; 
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.action textarea::placeholder, .duration input::placeholder {
+  opacity: 0.4;
+}
+
+.action textarea:focus, .duration input:focus {
+  color: #ffffff;
+  border-color: #bdbdbd;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+}
+
+.action textarea {
+  width: 100px;
+  resize: none;
+  font-size: small;
+}
+.duration input {
+  max-width: 30px;
+}
+.duration.time input, .duration.day input {
+  max-width: 50px;
+}
+.text {
+  font-size: small;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}

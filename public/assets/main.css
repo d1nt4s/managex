@@ -20,3 +20,9 @@ main.main {
   position: absolute;
   bottom: 56px;
 }
+
+.timenetto {
+  position: absolute;
+  top: 56px;
+  right: 0px;
+}

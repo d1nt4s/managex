@@ -15,6 +15,9 @@ export class Pomodoro
   // completed_stages => [ [0] of sessions; [1] of short_breaks; [2] of long_breaks ]
   completed_stages = [0, 0, 0];
 
+  startStageDate;
+  stopStageDate;
+
   constructor (stages)
   {
     this.stages = stages;
@@ -102,6 +105,9 @@ export class Pomodoro
 
   startStage()
   {
+    this.startStageDate = new Date().toString();
+    this.startStageDate = this.dateTreatment(this.startStageDate);
+
     document.getElementById('start_pomodoro').style.display = "none";
     document.getElementById('pause_pomodoro').style.display = "block";
   }
@@ -109,8 +115,38 @@ export class Pomodoro
   pauseStage()
   {
     clearInterval(this.interval);
+    this.stopStageDate = new Date().toString();
+    this.stopStageDate = this.dateTreatment(this.stopStageDate); 
+    
+    this.sendToTimeNettoData();
+
     document.getElementById('start_pomodoro').style.display = "block";
     document.getElementById('pause_pomodoro').style.display = "none";
   }
 
+  dateTreatment(str)
+  {
+    let index = str.indexOf("GMT");
+    str = str.slice(0, index-1);
+    return str;
+  }
+
+  sendToTimeNettoData()
+  {
+    let pomodoro_stage_data = [this.startStageDate, this.stopStageDate, this.stages_names.get(this.next)];
+
+    pomodoro_stage_data = JSON.stringify(pomodoro_stage_data);
+
+    $.ajax({
+      type:'POST',
+      url:'timenetto',
+      data:{
+        pomodoro_stage_data
+      },
+      success:function(data){
+        console.log(data)
+      }
+    });
+
+  }
 }

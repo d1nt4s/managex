@@ -5,3 +5,4 @@
 $router->get('', 'index.php');
 $router->post('pomodoro', 'pomodoro.php');
 $router->post('timetable', 'timetable.php');
+$router->post('timenetto', 'timenetto.php');

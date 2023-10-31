@@ -1,6 +1,5 @@
 import { Pomodoro } from "./PomodoroClass.js";
 
-
 let pomodoro = new Pomodoro(getStages());
 
 document.getElementById('start_pomodoro').addEventListener('click', () => {

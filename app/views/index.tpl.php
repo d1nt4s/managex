@@ -45,6 +45,53 @@
 </div>
 
 <div>
+  <div class="timenetto">
+
+    <table class="table timelog" style="display: block">
+      <thead>
+        <tr>
+          <?php foreach ($days_week as $day) : ?>
+
+            <th scope="col" colspan="2"><?= $day ?></th>
+
+            <?php 
+              $output = array();
+              $output = dataTableOutput(defineFilename($day)); 
+              ?>
+
+            <?php foreach ($output as $line) : ?>
+              <tr><td class=""><?= $line ?></td></tr>
+            <?php endforeach; ?>
+
+          <?php endforeach; ?>
+        </tr>
+      </thead>
+    </table>
+
+    <table class="table timeconclusion" style="display: none">
+      <thead>
+        <tr>
+          <?php foreach ($days_week as $day) : ?>
+
+            <th scope="col" colspan="2"><?= $day ?></th>
+
+            <?php 
+
+              ?>
+
+            <!-- <?php foreach ($output as $line) : ?>
+              <tr><td class=""><?= $line ?></td></tr>
+            <?php endforeach; ?> -->
+
+          <?php endforeach; ?>
+        </tr>
+      </thead>
+    </table>
+
+  </div>
+</div>
+
+<div>
   <div class="timetable">
 
   <table class="table table-dark table-striped align-middle table-sm">
@@ -98,6 +145,7 @@
 
 <script type="module" src="scripts/pomodoro.js"></script>
 <script type="text/javascript" src="scripts/timetable.js"></script>
+<script type="text/javascript" src="scripts/timenetto.js"></script>
 
 </main>
 

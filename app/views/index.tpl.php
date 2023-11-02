@@ -44,8 +44,15 @@
   </div>
 </div>
 
+<?php 
+  $timetable = $GLOBALS['timetable'];
+  $days_week = $GLOBALS['days_week'];
+?>
+
 <div>
   <div class="timenetto">
+
+    <div class="switch-btn switch-on"></div>
 
     <table class="table timelog" style="display: block">
       <thead>
@@ -54,10 +61,9 @@
 
             <th scope="col" colspan="2"><?= $day ?></th>
 
-            <?php 
-              $output = array();
-              $output = dataTableOutput(defineFilename($day)); 
-              ?>
+            <?php $output = showDayLog($day);
+              $line = 'smth';
+            ?>
 
             <?php foreach ($output as $line) : ?>
               <tr><td class=""><?= $line ?></td></tr>
@@ -68,20 +74,18 @@
       </thead>
     </table>
 
-    <table class="table timeconclusion" style="display: none">
+    <table class="table time_analyze" style="display: none">
       <thead>
         <tr>
           <?php foreach ($days_week as $day) : ?>
 
             <th scope="col" colspan="2"><?= $day ?></th>
 
-            <?php 
+            <?php $output = analyzeDay($day);?>
 
-              ?>
-
-            <!-- <?php foreach ($output as $line) : ?>
+            <?php foreach ($output as $line) : ?>
               <tr><td class=""><?= $line ?></td></tr>
-            <?php endforeach; ?> -->
+            <?php endforeach; ?>
 
           <?php endforeach; ?>
         </tr>

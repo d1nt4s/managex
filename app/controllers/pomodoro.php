@@ -1,7 +1,5 @@
 <?php
 
-require_once ('timetable.php');
-
 if (isset($_COOKIE['stages'])) {
   $stages = unserialize($_COOKIE['stages']);
 } else {

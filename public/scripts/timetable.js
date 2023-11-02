@@ -33,6 +33,8 @@ function sortData()
   let days_week = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
   let day = [];
 
+  console.log(document.querySelectorAll('.action.monday').length);
+
   for (let i = 0; i < days_week.length; i++)
   {
 
@@ -44,6 +46,7 @@ function sortData()
     day[5] = document.getElementsByClassName('duration ' + days_week[i] + ' row3')[0].firstChild.value; 
     day[6] = document.getElementsByClassName('duration time ' + days_week[i] + ' row4')[0].firstChild.value; 
     day[7] = document.getElementsByClassName('duration day ' + days_week[i] + ' row5')[0].firstChild.value; 
+    day[8] = document.querySelectorAll('.action.monday').length;
 
     data[days_week[i]] = day;    
     day = [];

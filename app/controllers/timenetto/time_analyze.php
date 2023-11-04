@@ -1,6 +1,6 @@
 <?php
 
-require_once('joint_funcs.php');
+require_once('funcs.php');
 
 function analyzeDay($day)
 {

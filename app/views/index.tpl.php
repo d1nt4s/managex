@@ -45,7 +45,6 @@
 </div>
 
 <?php 
-  
   $timetable = $GLOBALS['timetable'];
   $days_week = $GLOBALS['days_week'];
 ?>
@@ -62,9 +61,7 @@
 
             <th scope="col" colspan="2"><?= $day ?></th>
 
-            <?php $output = showDayLog($day);
-              $line = 'smth';
-            ?>
+            <?php $output = showDayLog($day); ?>
 
             <?php foreach ($output as $line) : ?>
               <tr><td class=""><?= $line ?></td></tr>

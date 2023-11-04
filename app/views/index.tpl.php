@@ -45,6 +45,7 @@
 </div>
 
 <?php 
+  
   $timetable = $GLOBALS['timetable'];
   $days_week = $GLOBALS['days_week'];
 ?>

@@ -33,7 +33,7 @@ function sortData()
   let days_week = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
   let day = [];
 
-  console.log(document.querySelectorAll('.action.monday').length);
+  // console.log(document.querySelectorAll('.action.monday').length);
 
   for (let i = 0; i < days_week.length; i++)
   {

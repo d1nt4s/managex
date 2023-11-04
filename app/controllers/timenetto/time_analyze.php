@@ -24,14 +24,14 @@ function analyzeDay($day)
 
 function bindTimeWithEmployment($employments, $working_time)
 {
-  $name = 0;
-  $duration = 1;
+  $employments_names = [$employments['first_business_name'], $employments['second_business_name'], $employments['third_business_name'], $employments['fourth_business_name'], $employments['fifth_business_name'], $employments['sixth_business_name']];
+  $employments_duration = [$employments['first_business_lasting'], $employments['second_business_lasting'], $employments['third_business_lasting'], $employments['fourth_business_lasting'], $employments['fifth_business_lasting'], $employments['sixth_business_lasting']];
 
-  for ($count = 0; $count < $employments[count($employments) - 1]; $count++)
+  for ($count = 0; $count < $employments['count_business']; $count++)
   {
-    if ($employments[$name] != "") {
+    if ($employments_names[$count] != "") {
 
-      $expected_duration = (int)((float) $employments[$duration]) * 60 * 60;
+      $expected_duration = (int)((float) $employments_duration[$count]) * 60 * 60;
 
       switch (true) {
         case $expected_duration - $working_time < 0:
@@ -51,10 +51,7 @@ function bindTimeWithEmployment($employments, $working_time)
       $real_duration_hours = intdiv(intdiv($real_duration, 60), 60);
       $real_duration_minutes = intdiv($real_duration, 60) % 60;
 
-      $report[$count] = "{$employments[$name]} has taken {$real_duration_hours} hours and {$real_duration_minutes} minutes";
-
-      $name = $name + 2;
-      $duration = $duration + 2;
+      $report[$count] = "{$employments_names[$count]} has taken {$real_duration_hours} hours and {$real_duration_minutes} minutes";
     }
   }
 

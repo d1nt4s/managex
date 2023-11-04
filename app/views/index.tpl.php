@@ -105,36 +105,30 @@
       </tr>
     </thead>
     <tbody class="timetable-body">
-      <tr>
-        <?php foreach ($days_week as $day) : ?>
-          <td class="action <?= lcfirst($day) ?> row1"><textarea rows="1"><?= $timetable[lcfirst($day)][0] ?></textarea></td>
-          <td class="duration <?= lcfirst($day) ?> row1"><input type="number" value="<?= $timetable[lcfirst($day)][1] ?>"></td>
-        <?php endforeach; ?>
-      </tr>
-      <tr>
-        <?php foreach ($days_week as $day) : ?>
-          <td class="action <?= lcfirst($day) ?> row2"><textarea rows="1"><?= $timetable[lcfirst($day)][2] ?></textarea></td>
-          <td class="duration <?= lcfirst($day) ?> row2"><input type="number" value="<?= $timetable[lcfirst($day)][3] ?>"></td>
-        <?php endforeach; ?>
-      </tr>
-      <tr>
-        <?php foreach ($days_week as $day) : ?>
-          <td class="action <?= lcfirst($day) ?> row3"><textarea rows="1"><?= $timetable[lcfirst($day)][4] ?></textarea></td>
-          <td class="duration <?= lcfirst($day) ?> row3"><input type="number" value="<?= $timetable[lcfirst($day)][5] ?>"></td>
-        <?php endforeach; ?>
-      </tr>
+
+      <?php $businesses = ['skip this','first', 'second', 'third', 'fourth', 'fifth', 'sixth']; ?>
+      <?php for ($count = 1; $count <= $timetable[lcfirst($day)]['count_business']; $count++) : ?>
+        <tr>
+          <?php foreach ($days_week as $day) : ?>
+            <td class="action <?= lcfirst($day) ?> row<?=$count?>"><textarea rows="1"><?= $timetable[lcfirst($day)]["{$businesses[$count]}_business_name"] ?></textarea></td>
+            <td class="duration <?= lcfirst($day) ?> row<?=$count?>"><input type="number" value="<?= $timetable[lcfirst($day)]["{$businesses[$count]}_business_lasting"] ?>"></td>
+          <?php endforeach; ?>
+        </tr>
+      <?php endfor; ?>
+
       <tr>
         <?php foreach ($days_week as $day) : ?>
           <td class="text">Working day until: </td>
-          <td class="duration time <?= lcfirst($day) ?> row4"><input value="<?= $timetable[lcfirst($day)][6] ?>"></td>
+          <td class="duration time <?= lcfirst($day) ?> row7"><input value="<?= $timetable[lcfirst($day)]['finish_time'] ?>"></td>
         <?php endforeach; ?>
       </tr>
       <tr>
         <?php foreach ($days_week as $day) : ?>
           <td class="text">Working day duration: </td>
-          <td class="duration day <?= lcfirst($day) ?> row5"><input value="<?= $timetable[lcfirst($day)][7] ?>"></td>
+          <td class="duration day <?= lcfirst($day) ?> row8"><input value="<?= $timetable[lcfirst($day)]['day_lasting'] ?>"></td>
         <?php endforeach; ?>
-      </tr>
+      </tr> 
+
     </tbody>
   </table>
 

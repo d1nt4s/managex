@@ -21,8 +21,8 @@ document.getElementById('set_timetable').addEventListener('click', () => {
 });
 
 document.getElementById('clear_timetable').addEventListener('click', () => {
-  // if (confirm("Are you sure to clear timetable?") == false)
-  //   return;
+  if (confirm("Are you sure to clear timetable?") == false)
+    return;
   clearTimetable();
 });
 
@@ -33,20 +33,25 @@ function sortData()
   let days_week = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
   let day = [];
 
-  // console.log(document.querySelectorAll('.action.monday').length);
-
   for (let i = 0; i < days_week.length; i++)
   {
-
     day[0] = document.getElementsByClassName('action ' + days_week[i] + ' row1')[0].firstChild.value; 
     day[1] = document.getElementsByClassName('duration ' + days_week[i] + ' row1')[0].firstChild.value; 
     day[2] = document.getElementsByClassName('action ' + days_week[i] + ' row2')[0].firstChild.value; 
     day[3] = document.getElementsByClassName('duration ' + days_week[i] + ' row2')[0].firstChild.value; 
     day[4] = document.getElementsByClassName('action ' + days_week[i] + ' row3')[0].firstChild.value; 
     day[5] = document.getElementsByClassName('duration ' + days_week[i] + ' row3')[0].firstChild.value; 
-    day[6] = document.getElementsByClassName('duration time ' + days_week[i] + ' row4')[0].firstChild.value; 
-    day[7] = document.getElementsByClassName('duration day ' + days_week[i] + ' row5')[0].firstChild.value; 
-    day[8] = document.querySelectorAll('.action.monday').length;
+
+    day[6] = document.getElementsByClassName('action ' + days_week[i] + ' row4')[0].firstChild.value; 
+    day[7] = document.getElementsByClassName('duration ' + days_week[i] + ' row4')[0].firstChild.value; 
+    day[8] = document.getElementsByClassName('action ' + days_week[i] + ' row5')[0].firstChild.value; 
+    day[9] = document.getElementsByClassName('duration ' + days_week[i] + ' row5')[0].firstChild.value; 
+    day[10] = document.getElementsByClassName('action ' + days_week[i] + ' row6')[0].firstChild.value; 
+    day[11] = document.getElementsByClassName('duration ' + days_week[i] + ' row6')[0].firstChild.value; 
+
+    day[12] = document.getElementsByClassName('duration time ' + days_week[i] + ' row7')[0].firstChild.value; 
+    day[13] = document.getElementsByClassName('duration day ' + days_week[i] + ' row8')[0].firstChild.value; 
+    day[14] = document.querySelectorAll('.action.monday').length;
 
     data[days_week[i]] = day;    
     day = [];
@@ -54,7 +59,6 @@ function sortData()
   }
 
   sendTimetable(data);
-
 }
 
 function sendTimetable(data)
